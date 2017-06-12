@@ -18,7 +18,15 @@ app.use(BodyParser.urlencoded({extended: false})); //콜론이나 샵을 특수�
 app.use('/api/accounts', require('./api/accounts')); // 해당 URI에 매칭
 
 app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '/views/index.html'));
+});
+
+app.get('/login', function (req, res) {
   res.sendFile(path.join(__dirname + '/views/login.html'));
+});
+
+app.get('/account/account_register', function (req, res) {
+  res.sendFile(path.join(__dirname + '/views/account_register.html'));
 });
 
 let server = http.createServer(app).listen(3000, function () {
