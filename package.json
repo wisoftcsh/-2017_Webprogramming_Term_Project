@@ -1,7 +1,8 @@
 {
-  "name": "hbnu",
+  "name": "webprogramming",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,10 +12,11 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "http": "0.0.0",
+    "http-status-codes": "^1.1.6",
+    "morgan": "^1.8.2",
+    "mysql": "^2.13.0",
     "path": "^0.12.7",
     "request": "^2.81.0",
-    "socket.io": "^2.0.2"
-  },
-  "devDependencies": {},
-  "description": ""
+    "socket.io": "^2.0.3"
+  }
 }
