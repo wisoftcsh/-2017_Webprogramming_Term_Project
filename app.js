@@ -20,6 +20,15 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/views/login.html'));
 });
 
+app.get('/main', function (req, res) {
+  res.sendFile(path.join(__dirname + '/views/main.html'));
+});
+
+
+app.get('/account/account_register', function (req, res) {
+  res.sendFile(path.join(__dirname + '/views/account_register.html'));
+});
+
 let server = http.createServer(app).listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });

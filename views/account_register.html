@@ -1,9 +1,7 @@
 <script language='javascript'>
-  var idflag = false;
-
   function checkvalue() {
     if (check.pass1.value && check.password.value) {
-      if (check.pass1.value != check.password.value) {
+      if (check.pass1.value !== check.password.value) {
         check.status.value = "일치하지 않습니다.";
       } else {
         check.status.value = "일치합니다.";
@@ -14,77 +12,85 @@
   }
 
   function flag() {
-    if (idflag) {
-      if (check.name.value && check.username.value && check.email.value && check.pass1.value &&
-          check.password.value && check.description.value && check.pass1.value === check.password.value && idflag) {
-        return true;
-      } else {
-        alert('입력을 확인해주세요..');
-      }
+    if (check.id.value && check.pass1.value && check.password.value && check.pass1.value === check.password.value && idflag) {
+      return true;
     } else {
-      alert('중복 체크해주세요.');
+      alert('입력을 확인해주세요..');
     }
     return false;
   }
-
-  function idCheck() {
-    if ($(check.username).val().length < 5 || $(check.username).val().length > 15) {
-      alert('ID 값은 5 ~ 15 글자에 맞춰주세요.');
-    } else {
-      $.ajax({
-        url: "http://203.230.100.65:8200/api/v1/accounts/duplicate/byUsername?username=" + check.username.value,
-        type: "get",
-        json: "callback",
-        dataType: 'json',
-        success: function (r) {
-          if (r.result) {
-            alert('중복입니다.');
-            idflag = false;
-          } else {
-            alert('중복이 아닙니다.');
-            idflag = true;
-          }
-        }
-      });
-    }
-  }
 </script>
 
-<article class="container">
-    <div class="page-header">
-        <h1>회원가입
-            <small>Wisoft IoT Platform</small>
-        </h1>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge"/>
+    <meta name="viewport" content="width-device-width, initial-scale=1.0"/>
+
+    <title>Hanbat Tasty Load</title>
+
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/side.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="/vendor/jquery/cookie.js"></script>
+    <script src="/vendor/jquery/jquery.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <article class="container">
+                <div class="page-header">
+                    <h1>회원가입
+                        <small>Wisoft IoT Platform</small>
+                    </h1>
+                </div>
+                <div class="col-md-12 col-md-offset-0 register">
+                    <form name="check" id="register_form" onsubmit="return flag();" method="post" action='/api/accounts/'>
+                        <div class="form-group">
+                            <label for="InputId">ID</label>
+                            <input type="text" class="form-control" name="id" id="InputId" minlength="5" maxlength="15"
+                                   placeholder="필수 항목 / 15자 이내">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputPassword1">비밀번호</label>
+                            <input type="password" class="form-control" id="InputPassword1" name="pass1" maxlength="255"
+                                   placeholder="필수 항목 / 255자 이내" onkeyup="checkvalue();">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputPassword2">비밀번호 확인</label>
+                            <input type="password" class="form-control" id="InputPassword2" name="password"
+                                   maxlength="255"
+                                   placeholder="필수 항목 / 255자 이내" onkeyup="checkvalue();">
+                            <input type="text" class="margin-top col-md-5" style="color:red; margin-top: 5px;"
+                                   name="status" readonly
+                                   onkeyup="this.blur();" disabled value="비밀번호를 입력해 주세요">
+                        </div>
+                        <br>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-info" form="register_form">회원가입<i
+                                    class="fa fa-check spaceLeft"></i></button>
+                            <button type="button" class="btn btn-warning" onclick="location.href='/'">가입취소<i
+                                    class="fa fa-times spaceLeft"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </article>
+        </div>
     </div>
-    <div class="col-md-12 col-md-offset-0 register">
-        <form name="check" id="register_form" onsubmit="return flag();" method="post"
-              action='/api/accounts/'>
-            <div class="form-group">
-                <label for="InputId">ID</label>
-                <input type="text" class="form-control" name="username" id="InputId" minlength="5" maxlength="15"
-                       placeholder="필수 항목 / 15자 이내">
-                <input type="button" value="중복체크" onclick="idCheck()" class="pull-right margin-top">
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="InputPassword1">비밀번호</label>
-                <input type="password" class="form-control" id="InputPassword1" name="pass1" maxlength="255"
-                       placeholder="필수 항목 / 255자 이내" onkeyup="checkvalue();">
-            </div>
-            <div class="form-group">
-                <label for="InputPassword2">비밀번호 확인</label>
-                <input type="password" class="form-control" id="InputPassword2" name="password" maxlength="255"
-                       placeholder="필수 항목 / 255자 이내" onkeyup="checkvalue();">
-                <input type="text" class="margin-top col-md-5" style="color:red;" name="status" readonly
-                       onkeyup="this.blur();" disabled value="비밀번호를 입력해 주세요">
-            </div>
-            <br>
-            <div class="form-group text-center">
-                <button type="submit" class="btn btn-info" form="register_form">회원가입<i
-                        class="fa fa-check spaceLeft"></i></button>
-                <button type="button" class="btn btn-warning" onclick="location.href='/account'">가입취소<i
-                        class="fa fa-times spaceLeft"></i></button>
-            </div>
-        </form>
-    </div>
-</article>
+</div>
+</body>
+</html>
