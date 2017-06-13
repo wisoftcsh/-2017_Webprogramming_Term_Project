@@ -112,7 +112,8 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
   //  var socket = io.connect('http://192.168.0.80:3000');
-  let markers =[];
+  let markers = [];
+  let infowindows = [];
   function moveTo(data) {
     if (data === '고래떡볶이') {
       let markerPosition = new daum.maps.LatLng(36.348566, 127.298804);
@@ -121,16 +122,68 @@
       });
       markers.push(marker);
       marker.setMap(map);
-      let iwContent = '<div style="padding:5px; color:black">' +
-              '<a href="" style="text-decoration: none; color:black">고래떡볶이</a></div>',
+      let iwContent = '<div style="padding:5px; color:black; font-size: 2rem;">' +
+              '고래떡볶이  ' +
+              '<a href="/api/menus/menu?name=고래떡볶이" charset="UTF-8" style="text-decoration: none; color:black">' +
+              '<i class="fa fa-home fa-1x sr-contact"></i></a></div>',
           iwRemoveable = true;
 
       let infowindow = new daum.maps.InfoWindow({
-        content : iwContent,
-        removable : iwRemoveable
+        content: iwContent,
+        removable: iwRemoveable
       });
 
-      daum.maps.event.addListener(marker, 'click', function() {
+      infowindows.push(infowindow);
+
+      daum.maps.event.addListener(marker, 'click', function () {
+        // 마커 위에 인포윈도우를 표시합니다
+        infowindow.open(map, marker);
+      });
+    } else if (data === '봉구스') {
+      let markerPosition = new daum.maps.LatLng(36.348677, 127.299723);
+      let marker = new daum.maps.Marker({
+        position: markerPosition
+      });
+      markers.push(marker);
+      marker.setMap(map);
+      let iwContent = '<div style="padding:5px; color:black; font-size: 2rem;">' +
+              '봉구스  ' +
+              '<a href="" style="text-decoration: none; color:black">' +
+              '<i class="fa fa-home fa-1x sr-contact"></i></a></div>',
+          iwRemoveable = true;
+
+      let infowindow = new daum.maps.InfoWindow({
+        content: iwContent,
+        removable: iwRemoveable
+      });
+
+      infowindows.push(infowindow);
+
+      daum.maps.event.addListener(marker, 'click', function () {
+        // 마커 위에 인포윈도우를 표시합니다
+        infowindow.open(map, marker);
+      });
+    } else if (data === '몽떡') {
+      let markerPosition = new daum.maps.LatLng(36.348279, 127.300139);
+      let marker = new daum.maps.Marker({
+        position: markerPosition
+      });
+      markers.push(marker);
+      marker.setMap(map);
+      let iwContent = '<div style="padding:5px; color:black; font-size: 2rem;">' +
+              '몽떡  ' +
+              '<a href="" style="text-decoration: none; color:black">' +
+              '<i class="fa fa-home fa-1x sr-contact"></i></a></div>',
+          iwRemoveable = true;
+
+      let infowindow = new daum.maps.InfoWindow({
+        content: iwContent,
+        removable: iwRemoveable
+      });
+
+      infowindows.push(infowindow);
+
+      daum.maps.event.addListener(marker, 'click', function () {
         // 마커 위에 인포윈도우를 표시합니다
         infowindow.open(map, marker);
       });
@@ -141,13 +194,80 @@
       });
       markers.push(marker);
       marker.setMap(map);
+      let iwContent = '<div style="padding:5px; color:black; font-size: 2rem;">' +
+              '마루  ' +
+              '<a href="/api/menus/menu?name=마루" charset="UTF-8" style="text-decoration: none; color:black">' +
+              '<i class="fa fa-home fa-1x sr-contact"></i></a></div>',
+          iwRemoveable = true;
+
+      let infowindow = new daum.maps.InfoWindow({
+        content: iwContent,
+        removable: iwRemoveable
+      });
+
+      infowindows.push(infowindow);
+
+      daum.maps.event.addListener(marker, 'click', function () {
+        // 마커 위에 인포윈도우를 표시합니다
+        infowindow.open(map, marker);
+      });
+    } else if (data === '황돈이') {
+      let markerPosition = new daum.maps.LatLng(36.349120, 127.297775);
+      let marker = new daum.maps.Marker({
+        position: markerPosition
+      });
+      markers.push(marker);
+      marker.setMap(map);
+      let iwContent = '<div style="padding:5px; color:black; font-size: 2rem;">' +
+              '황돈이  ' +
+              '<a href="" style="text-decoration: none; color:black">' +
+              '<i class="fa fa-home fa-1x sr-contact"></i></a></div>',
+          iwRemoveable = true;
+
+      let infowindow = new daum.maps.InfoWindow({
+        content: iwContent,
+        removable: iwRemoveable
+      });
+
+      infowindows.push(infowindow);
+
+      daum.maps.event.addListener(marker, 'click', function () {
+        // 마커 위에 인포윈도우를 표시합니다
+        infowindow.open(map, marker);
+      });
+    } else if (data === '오뚜기식당') {
+      let markerPosition = new daum.maps.LatLng(36.349421, 127.298211);
+      let marker = new daum.maps.Marker({
+        position: markerPosition
+      });
+      markers.push(marker);
+      marker.setMap(map);
+      let iwContent = '<div style="padding:5px; color:black; font-size: 2rem;">' +
+              '오뚜기식당  ' +
+              '<a href="" style="text-decoration: none; color:black">' +
+              '<i class="fa fa-home fa-1x sr-contact"></i></a></div>',
+          iwRemoveable = true;
+
+      let infowindow = new daum.maps.InfoWindow({
+        content: iwContent,
+        removable: iwRemoveable
+      });
+
+      infowindows.push(infowindow);
+
+      daum.maps.event.addListener(marker, 'click', function () {
+        // 마커 위에 인포윈도우를 표시합니다
+        infowindow.open(map, marker);
+      });
     }
   }
 
   function setNull() {
     for (let i = 0; i < markers.length; i++) {
       markers[i].setMap(null);
-    };
+      infowindows[i].close();
+    }
+    ;
   }
 
 </script>

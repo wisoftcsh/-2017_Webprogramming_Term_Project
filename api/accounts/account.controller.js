@@ -38,14 +38,4 @@ const findOne = (req, res) => {
   });
 };
 
-const maru = (req, res) => {
-  connection.query("select menu.m_name, menu.price from menu join restaurant on menu.r_no=restaurant.r_no where restaurant.r_name='마루'" , (err, result) => {
-    if (err) {
-      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(err);
-    }
-
-    console.log(result);
-  });
-};
-
-module.exports = {findOne, register, maru};
+module.exports = {findOne, register};
