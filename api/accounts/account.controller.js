@@ -31,7 +31,7 @@ const findOne = (req, res) => {
     if (err) {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(err);
     }
-    if(result.length != 0){
+    if(result.length !== 0){
       return res.status(HttpStatus.OK).json(result);
     }
     return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(err);
