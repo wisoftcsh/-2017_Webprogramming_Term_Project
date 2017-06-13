@@ -14,7 +14,7 @@ const register = (req, res) => {
   const id = parseInt(req.body.id);
   connection.query('insert into user(u_id, password) values (?, ?)', [id, req.body.password], (err, result) => {
     if (err) {
-      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(err);
+      return res.send('해당 정보로 회원가입이 불가합니다. 중복 된 아이디 입니다. ');
     }
 
     const resultRows = result.affectedRows; //영향을 받은 Row 들의 수

@@ -14,11 +14,12 @@ app.use(bodyParser.urlencoded({
 let hbs = exphbs.create({
   defaultLayout : __dirname +'/views/layouts/main.handlebars.hbs',
   partialsDir   : __dirname +'/views/partials',
-  layoutsDir    : __dirname +'/views/layouts'
+  layoutsDir    : __dirname +'/views/layouts',
+  option: __dirname + '/views'
 });
+
 app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
-
 app.use(express.static('views'));
 app.use(Logger('dev'));
 app.use(BodyParser.json()); //json 형태를 사용하겠다
@@ -39,12 +40,16 @@ app.get('/menu', function (req, res) {
   res.sendFile(path.join(__dirname + '/views/menu.html'));
 });
 
-app.get('/board', function (req, res) {
-  res.sendFile(path.join(__dirname + '/views/board.html'));
-});
-
 app.get('/account/account_register', function (req, res) {
   res.sendFile(path.join(__dirname + '/views/account_register.html'));
+});
+
+app.get('/board/add', function (req, res) {
+  res.sendFile(path.join(__dirname + '/views/board_add.html'));
+});
+
+app.get('/board/one/add', function (req, res) {
+  res.sendFile(path.join(__dirname + '/views/board_add_one.html'));
 });
 
 let server = http.createServer(app).listen(3000, function () {

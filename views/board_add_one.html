@@ -1,18 +1,15 @@
 <script language='javascript'>
-  function checkvalue() {
-    if (check.pass1.value && check.password.value) {
-      if (check.pass1.value !== check.password.value) {
-        check.status.value = "일치하지 않습니다.";
-      } else {
-        check.status.value = "일치합니다.";
-      }
-    } else {
-      check.status.value = "비밀번호를 입력해 주세요.";
-    }
-  }
-
   function flag() {
-    if (check.id.value && check.pass1.value && check.password.value && check.pass1.value === check.password.value && idflag) {
+    let store = ['마루', '황돈이', '오뚜기식당', '고래떡볶이', '봉구스밥버거', '몽떡', '봉스키친', '하카타', '스시킴', '보니타', '더쿡', '솔트앤페퍼'];
+    let flag = false;
+    for (var i = 0; i < store.length; i++) {
+      if(check.storeName.value === store[i].toString()){
+        flag = true;
+        console.log(flag);
+      }
+    }
+
+    if (check.uId.value && check.subject.value && check.star.value && flag) {
       return true;
     } else {
       alert('입력을 확인해주세요..');
@@ -54,36 +51,36 @@
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
             <article class="container">
                 <div class="page-header">
-                    <h1>회원가입
-                        <small>Wisoft IoT Platform</small>
+                    <h1>리뷰 등록
+                        <small>리얼 후기를 등록해주세요.</small>
                     </h1>
                 </div>
                 <div class="col-md-12 col-md-offset-0 register">
-                    <form name="check" id="register_form" onsubmit="return flag();" method="post" action='/api/accounts/'>
+                    <form name="check" id="register_form" onsubmit="return flag();" method="post" action='/api/board/board/add'>
                         <div class="form-group">
-                            <label for="InputId">ID</label>
-                            <input type="text" class="form-control" name="id" id="InputId" minlength="5" maxlength="15"
+                            <label for="InputId">식당명</label>
+                            <input type="text" class="form-control" name="storeName" id="InputStoreName" minlength="1" maxlength="15"
                                    placeholder="필수 항목 / 15자 이내">
                         </div>
                         <div class="form-group">
-                            <label for="InputPassword1">비밀번호</label>
-                            <input type="password" class="form-control" id="InputPassword1" name="pass1" maxlength="20"
-                                   placeholder="필수 항목 / 20자 이내" onkeyup="checkvalue();">
+                            <label for="InputId">ID</label>
+                            <input type="text" class="form-control" name="uId" id="InputId" minlength="5" maxlength="15"
+                                   placeholder="필수 항목 / 15자 이내">
                         </div>
                         <div class="form-group">
-                            <label for="InputPassword2">비밀번호 확인</label>
-                            <input type="password" class="form-control" id="InputPassword2" name="password"
-                                   maxlength="20"
-                                   placeholder="필수 항목 / 20자 이내" onkeyup="checkvalue();">
-                            <input type="text" class="margin-top col-md-5" style="color:red; margin-top: 5px;"
-                                   name="status" readonly
-                                   onkeyup="this.blur();" disabled value="비밀번호를 입력해 주세요">
+                            <label for="InputId">내용</label>
+                            <input type="text" class="form-control" name="subject" id="InputSubject" maxlength="300"
+                                   placeholder="필수 항목 / 300자 이내">
                         </div>
-                        <br>
+                        <div class="form-group">
+                            <label for="InputId">평점</label>
+                            <input type="text" class="form-control" name="star" id="InputStar" minlength="1" maxlength="1"
+                                   placeholder="필수 항목 / 1~5 사이 숫자 입력">
+                        </div>
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-info" form="register_form">회원가입<i
+                            <button type="submit" class="btn btn-info" form="register_form">등록<i
                                     class="fa fa-check spaceLeft"></i></button>
-                            <button type="button" class="btn btn-warning" onclick="location.href='/'">가입취소<i
+                            <button type="button" class="btn btn-warning" onclick="javascript:history.go(-1)">취소<i
                                     class="fa fa-times spaceLeft"></i></button>
                         </div>
                     </form>

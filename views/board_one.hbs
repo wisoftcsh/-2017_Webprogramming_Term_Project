@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+^<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -43,9 +43,9 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h1 class="page-header">{{name}}
+                <h1 class="page-header">학생들의 솔직한 리얼 후기
                     <div class="pull-right">
-                        <a href="/api/board/board?name={{name}}" class="btn btn-primary" role="button">REVIEW</a>
+                        <a href="/board/one/add" class="btn btn-primary" role="button">+</a>
                     </div>
                 </h1>
             </div>
@@ -55,36 +55,36 @@
 
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <div class="col-lg-8">
-                    <img src="/img/{{name}}.JPG" width="100%" height="auto" alt="">
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            All
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped text-center">
-                                    <thead style="font-weight: bold; font-size: 2rem;">
-                                    <td nowrap>메뉴</td>
-                                    <td nowrap>가격</td>
-                                    </thead>
-                                    <tbody>
-                                    {{#each data}}
-                                        <tr>
-                                            <td nowrap>{{m_name}}</td>
-                                            <td nowrap>{{price}}</td>
-                                        </tr>
-                                    {{/each}}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        All
                     </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th nowrap>사용자</th>
+                                    <th nowrap>내용</th>
+                                    <th nowrap>별점</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{#each data}}
+                                    <tr>
+                                        <td>{{b_no}}</td>
+                                        <td nowrap>{{u_id}}</td>
+                                        <td>{{subject}}</td>
+                                        <td>{{star}}</td>
+                                {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.panel-body -->
                 </div>
                 <!-- /.panel -->
             </div>
