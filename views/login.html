@@ -1,4 +1,3 @@
-
 <style>
     /* Credit to bootsnipp.com for the css for the color graph */
     .colorgraph {
@@ -148,9 +147,8 @@
         id: check.id.value,
         password: check.password.value
       }, success: function (dt, status, request) {
-        window.location.href = '/';
+        window.location.href = '/main';
       }, error: function (error) {
-        console.log(error);
         alert("로그인 실패 아이디와 비밀번호를 확인해주세요.");
       }
     });

@@ -14,16 +14,13 @@ const register = (req, res) => {
   const id = parseInt(req.body.id);
   connection.query('insert into user(u_id, password) values (?, ?)', [id, req.body.password], (err, result) => {
     if (err) {
-      connection.end();
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(err);
     }
 
     const resultRows = result.affectedRows; //영향을 받은 Row 들의 수
     if (resultRows === 0) { // row가 영향이 없으면
-      connection.end();
       return res.status(HttpStatus.BAD_REQUEST).json(result);
     }
-    connection.end();
     res.redirect("/");
   });
 };
@@ -32,12 +29,23 @@ const findOne = (req, res) => {
   const id = parseInt(req.query.id); // id는 string 형태로 들어오기때문에 Int로 전환
   connection.query('select * from user where u_id = ? and password = ?', [id, req.query.password], (err, result) => {
     if (err) {
-      connection.end();
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(err);
     }
-    connection.end();
-    res.status(HttpStatus.OK).json(result);
+    if(result.length !== 0){
+      return res.status(HttpStatus.OK).json(result);
+    }
+    return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(err);
   });
 };
 
-module.exports = {findOne, register};
+const maru = (req, res) => {
+  connection.query("select menu.m_name, menu.price from menu join restaurant on menu.r_no=restaurant.r_no where restaurant.r_name='마루'" , (err, result) => {
+    if (err) {
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(err);
+    }
+
+    console.log(result);
+  });
+};
+
+module.exports = {findOne, register, maru};
